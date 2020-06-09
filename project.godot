@@ -1,0 +1,110 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "BaseEnemy",
+"language": "GDScript",
+"path": "res://Enemy/Scripts/BaseEnemy.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Coconut",
+"language": "GDScript",
+"path": "res://Scripts/Coconut.gd"
+}, {
+"base": "BaseEnemy",
+"class": "EnemyDigger",
+"language": "GDScript",
+"path": "res://Enemy/Scripts/EnemyDigger.gd"
+}, {
+"base": "SimpleEnemy",
+"class": "EnemyTank",
+"language": "GDScript",
+"path": "res://Enemy/Scripts/EnemyTank.gd"
+}, {
+"base": "Node2D",
+"class": "Game",
+"language": "GDScript",
+"path": "res://Scripts/Game.gd"
+}, {
+"base": "BaseEnemy",
+"class": "SimpleEnemy",
+"language": "GDScript",
+"path": "res://Enemy/Scripts/SimpleEnemy.gd"
+} ]
+_global_script_class_icons={
+"BaseEnemy": "",
+"Coconut": "",
+"EnemyDigger": "",
+"EnemyTank": "",
+"Game": "",
+"SimpleEnemy": ""
+}
+
+[application]
+
+config/name="Protect The Pearl"
+run/main_scene="res://Menu.tscn"
+config/icon="res://assets/pearl.png"
+
+[autoload]
+
+Global="*res://Global.tscn"
+
+[display]
+
+window/size/resizable=false
+window/vsync/use_vsync=false
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[input]
+
+rotate_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+rotate_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+attack={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pickup={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_3="Coconut Attackable"
+2d_physics/layer_4="Claw Attackable"
+2d_physics/layer_5="Coconut Wall"
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+environment/default_environment="res://default_env.tres"

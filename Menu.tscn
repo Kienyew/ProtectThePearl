@@ -1,0 +1,189 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/beach-sand.png" type="Texture" id=1]
+[ext_resource path="res://assets/Title.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/pearl.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Flood.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Coconut.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Start.png" type="Texture" id=8]
+[ext_resource path="res://assets/Start-click.png" type="Texture" id=9]
+[ext_resource path="res://Intro.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/Quit.png" type="Texture" id=11]
+[ext_resource path="res://assets/Quit-clicked.png" type="Texture" id=12]
+[ext_resource path="res://assets/Roboto-Black.ttf" type="DynamicFontData" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "loop"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -3.0, 0.0, 3.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -135.915, -111.029 ), Vector2( -135.915, -83.7065 ) ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+font_data = ExtResource( 13 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+intro_scene = ExtResource( 10 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -135.915
+margin_top = -110.304
+margin_right = 120.085
+margin_bottom = 9.69592
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flood" parent="." instance=ExtResource( 6 )]
+position = Vector2( 323.193, -180.74 )
+rotation = -0.261799
+scale = Vector2( 0.773565, 1.79234 )
+frame = 1
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="pearl" type="Sprite" parent="Objects"]
+position = Vector2( 994.794, 481.611 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+
+[node name="pearl2" type="Sprite" parent="Objects"]
+position = Vector2( 940.699, 171.934 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+
+[node name="pearl3" type="Sprite" parent="Objects"]
+position = Vector2( 1036.27, 50.8196 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+
+[node name="pearl4" type="Sprite" parent="Objects"]
+position = Vector2( 1045.48, 332.417 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+
+[node name="Coconut" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 595.505, 314.395 )
+
+[node name="Player" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 792.888, 300.764 )
+scale = Vector2( 2.68, 2.68 )
+
+[node name="Title" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -407.668
+margin_top = 86.8477
+margin_right = 215.332
+margin_bottom = 187.848
+rect_rotation = -2.84081
+rect_pivot_offset = Vector2( 399.468, 64 )
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/loop = SubResource( 1 )
+
+[node name="StartButton" type="TextureButton" parent="."]
+margin_left = 146.641
+margin_top = 251.946
+margin_right = 317.641
+margin_bottom = 351.946
+rect_rotation = -6.0
+focus_mode = 1
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="TextureButton" parent="."]
+margin_left = 171.589
+margin_top = 350.176
+margin_right = 342.589
+margin_bottom = 450.176
+rect_rotation = 0.0123325
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BestWaveLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -191.0
+margin_top = -44.0
+margin_right = -7.0
+margin_bottom = -6.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.329412, 0.329412, 0.329412, 1 )
+text = "Best wave: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditLabel" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -51.0
+margin_right = 696.0
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.329412, 0.329412, 0.329412, 0.164706 )
+text = "Made by Kienyew, using Godot Engine
+Music: Povo Que Caís Descalço by Dead Combo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]

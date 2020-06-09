@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Dead_Combo_-_01_-_Povo_Que_Cas_Descalo.ogg-b5d53a3b1b603d264491b86df6ce04e8.oggstr"
+
+[deps]
+
+source_file="res://assets/Dead_Combo_-_01_-_Povo_Que_Cas_Descalo.ogg"
+dest_files=[ "res://.import/Dead_Combo_-_01_-_Povo_Que_Cas_Descalo.ogg-b5d53a3b1b603d264491b86df6ce04e8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

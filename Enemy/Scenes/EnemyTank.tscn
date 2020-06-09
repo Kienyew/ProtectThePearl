@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Enemy/Scripts/EnemyTank.gd" type="Script" id=1]
+[ext_resource path="res://assets/EnemyTank.png" type="Texture" id=2]
+[ext_resource path="res://Enemy/Scripts/EnemyArea2D.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 50.4359
+height = 46.9887
+
+[sub_resource type="Animation" id=2]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.629622, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.443137, 0.443137, 0.443137, 1 ), Color( 0.443137, 0.443137, 0.443137, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.250892, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -7.736, 5 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.252664, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.964706, 0.501961, 0.501961, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="EnemyTank" type="Node2D" groups=[
+"claw_attackable",
+"enemy",
+]]
+script = ExtResource( 1 )
+health = 20
+min_wave = 5
+difficulty_point = 3
+base_movement_speed = 50
+activation_x = 500.0
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.274296, 0.274296 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 12
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.513351, 0.463287 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="PearlContainer" type="Node2D" parent="."]
+position = Vector2( -38.9059, -15.1301 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/die = SubResource( 2 )
+anims/receive_attack = SubResource( 3 )
+
+[node name="ReceiveAttackResetSpeedTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="SearchTargetTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="ReceiveAttackResetSpeedTimer" to="." method="_on_ReceiveAttackResetSpeedTimer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
